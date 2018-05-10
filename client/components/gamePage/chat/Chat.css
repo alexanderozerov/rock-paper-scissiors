@@ -1,0 +1,33 @@
+.Chat .card-body {
+  position: relative;
+}
+
+.typing-nickname {
+  position: absolute;
+  left: 20px;
+  bottom: 0;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.typing-nickname.hidden {
+  visibility: hidden;
+}
+
+.Chat .messages {
+  overflow-y: scroll;
+  height: 100px;
+}
+
+.Chat form {
+  display: flex;
+}
+
+.Chat input {
+  border-radius: .25rem 0 0 .25rem;
+}
+
+.Chat .btn {
+  max-width: 100px;
+  border-radius: 0 .25rem .25rem 0;
+}

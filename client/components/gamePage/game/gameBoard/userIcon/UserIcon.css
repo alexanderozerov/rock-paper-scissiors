@@ -1,0 +1,16 @@
+.UserIcon {
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  visibility: hidden;
+  text-align: center;
+}
+
+.UserIcon.active {
+  visibility: visible;
+}
+
+.UserIcon > img {
+  height: 100%;
+}

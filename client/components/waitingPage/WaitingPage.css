@@ -1,0 +1,33 @@
+.WaitingPage .card{
+  margin-top: 20px;
+}
+
+.WaitingPage .card-body {
+  min-height: 200px;
+}
+
+.WaitingPage input:read-only {
+  background-color: #fff;
+}
+
+.WaitingPage .card-waiting {
+  -webkit-animation: fade-in 1.5s ease both;
+  animation: fade-in 1.5s ease both;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title Socket IO game
+    link(rel='shortcut icon', href='/img/favicon.ico', type='image/x-icon')
+    link(rel='stylesheet', href='/styles.css')
+  body
+    #root
+    noscript You need to enable JavaScript to run this app.
+    script.
+      window.roomData = !{JSON.stringify(roomData)}
+    script(src='/bundle.js')

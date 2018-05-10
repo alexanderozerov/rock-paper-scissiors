@@ -1,0 +1,43 @@
+{
+  "name": "rock-paper-scissors-game",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "concurrently --kill-others \"webpack -wd\" \"nodemon --exec babel-node ./server/index.js --ignore client/ --ignore public/\"",
+    "start": "node dist/index.js",
+    "build": "babel server -d dist && webpack -p",
+    "build-client": "webpack -p"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "express": "^4.16.3",
+    "lodash": "^4.17.10",
+    "prop-types": "^15.6.1",
+    "pug": "^2.0.3",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "socket.io": "^2.1.0",
+    "socket.io-client": "^2.1.0",
+    "soundmanager2": "^2.97.20170602"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "concurrently": "^3.5.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.7.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "nodemon": "^1.17.4",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.7.0",
+    "webpack-cli": "^2.1.2"
+  }
+}

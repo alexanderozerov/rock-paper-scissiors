@@ -1,0 +1,13 @@
+.ScorePanel h2 {
+  text-align: center;
+  color: #fff;
+}
+
+.score-header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.score-header .score-block {
+  width: 200px;
+}

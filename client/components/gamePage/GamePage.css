@@ -1,0 +1,21 @@
+.GamePage {
+  -webkit-animation: fade-in 1.5s ease both;
+  animation: fade-in 1.5s ease both;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
