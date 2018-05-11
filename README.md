@@ -6,6 +6,7 @@
 
  - $ git clone https://github.com/alexanderozerov/rock-paper-scissors.git
  - $ npm install --production
+ - $ npm run build
  - $ npm start
 
 ### Stack
