@@ -1,9 +1,10 @@
 # rock-paper-scissiors
 
  Rock paper scissors lizard spock multiplayer game
- ![game1](https://media.giphy.com/media/5ew5dwx3HsT9AjEFFY/giphy.gif)
- ![game2](https://media.giphy.com/media/QfopZPvYKEcmcCAxjK/giphy.gif)
- ![game3](https://media.giphy.com/media/3s977GNnu09NpgAIvw/giphy.gif)
+ 
+![game1](https://media.giphy.com/media/5tkGN1To0VtB5BWA7S/giphy.gif)
+![game2](https://media.giphy.com/media/2krIsLprBOk8A2KxRR/giphy.gif)
+![game3](https://media.giphy.com/media/33FaVICPRWOYia0kzl/giphy.gif)
 
 ### Install
 
