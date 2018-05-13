@@ -13,30 +13,43 @@ const rules = `Scissors cuts Paper, Paper covers Rock,
   Spock vaporizes Rock, (and as it always has) 
   Rock crushes Scissors`;
 
+const views = {
+  WELCOME: 'WELCOME',
+  FAIL: 'FAIL',
+  WAITING: 'WAITING'
+};
+
+const events = {
+  WAIT_ROOM: 'WAIT_ROOM',
+  CREATE_ROOM: 'CREATE_ROOM',
+  FAIL_CREATE_ROOM: 'FAIL_CREATE_ROOM'
+};
+
 class WaitingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'WELCOME'
+      view: views.WELCOME
     };
     this.startGame = this.startGame.bind(this);
   }
 
   componentDidMount() {
-    this.props.socket.on('FAIL_CREATE_ROOM', () => {
-      this.setState({view: 'FAIL'});
+    this.props.socket.on(events.FAIL_CREATE_ROOM, () => {
+      this.setState({view: views.FAIL});
     });
   }
 
   startGame() {
-    const action = this.props.initiator ? 'WAIT_ROOM' : 'CREATE_ROOM';
+    const action = this.props.initiator ? 
+      events.WAIT_ROOM : events.CREATE_ROOM;
     this.props.socket.emit(action, {
       nickname: this.props.nickname, 
       roomId: this.props.roomId
     });
     
     if (this.props.initiator) {
-      this.setState({view: 'WAITING'});
+      this.setState({view: views.WAITING});
     }
   }
 
@@ -44,13 +57,13 @@ class WaitingPage extends Component {
     let view;
 
     switch (this.state.view) {
-    case 'WAITING':
+    case views.WAITING:
       view = (
         <WaitingCard 
           url={`${this.props.url}/game/${this.props.roomId}`}/>
       );
       break;
-    case 'WELCOME':
+    case views.WELCOME:
       view = (
         <WelcomeCard startGame={this.startGame}
           setNickname={this.props.setNickname}
@@ -58,7 +71,7 @@ class WaitingPage extends Component {
           initiator={this.props.initiator}/>
       );
       break;
-    case 'FAIL':
+    case views.FAIL:
       view = <FailCard url={this.props.url} />;
       break;
     }

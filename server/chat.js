@@ -1,3 +1,5 @@
+import constants from './constants';
+
 class Chat {
   constructor(roomName, clients) {
     this.roomName = roomName;
@@ -8,14 +10,14 @@ class Chat {
   sendMessage(message, client) {
     this.history = [...this.history, message];
     client.to(this.roomName).emit(
-      'RECEIVE_MESSAGE', 
+      constants.RECEIVE_MESSAGE, 
       {author: client.nickname, message}
     );
   }
 
   typeMessage(client) {
     client.to(this.roomName).emit(
-      'TYPE_MESSAGE', 
+      constants.TYPE_MESSAGE, 
       client.nickname
     );
   }

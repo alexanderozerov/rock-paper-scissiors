@@ -6,12 +6,21 @@ import WaitingPage from '../waitingPage/WaitingPage';
 import GamePage from '../gamePage/GamePage'; 
 import './App.css';
 
+const views = {
+  WAITING: 'WAITING',
+  GAME: 'GAME'
+};
+
+const events = {
+  ROOM_CREATED: 'ROOM_CREATED'
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       socket: io(props.url),
-      view: 'WAITING_PAGE',
+      view: views.WAITING,
       nickname: props.roomData.initiator ? 'Player1' : 'Player2',
       opponentNickname: ''
     };
@@ -19,9 +28,9 @@ class App extends Component {
 
   componentDidMount() {
     const socket = this.state.socket;
-    socket.on('ROOM_CREATED', data => {
+    socket.on(events.ROOM_CREATED, data => {
       this.setState({
-        view: 'GAME_PAGE',
+        view: views.GAME,
         opponentNickname: data.opponentNickname
       });
     });
@@ -31,7 +40,7 @@ class App extends Component {
     let view = '';
 
     switch (this.state.view) {
-    case 'WAITING_PAGE':
+    case views.WAITING:
       view = (
         <WaitingPage socket={this.state.socket} 
           roomId={this.props.roomData.roomId} 
@@ -41,7 +50,7 @@ class App extends Component {
           nickname={this.state.nickname}/>
       );
       break;
-    case 'GAME_PAGE': 
+    case views.GAME: 
       view = (
         <GamePage 
           socket={this.state.socket}

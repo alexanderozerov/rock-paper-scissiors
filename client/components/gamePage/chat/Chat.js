@@ -7,6 +7,12 @@ import './Chat.css';
 
 const getId = () => Math.random().toString(36).substr(2, 16);
 
+const events = {
+  TYPE_MESSAGE: 'TYPE_MESSAGE',
+  SEND_MESSAGE: 'SEND_MESSAGE',
+  RECEIVE_MESSAGE: 'RECEIVE_MESSAGE'
+};
+
 class Chat extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +30,7 @@ class Chat extends Component {
   }
 
   emitTyping() {
-    this.props.socket.emit('TYPE_MESSAGE');
+    this.props.socket.emit(events.TYPE_MESSAGE);
   }
 
   handleInput(e) {
@@ -34,7 +40,7 @@ class Chat extends Component {
 
   sendMessage(e) {
     e.preventDefault();
-    this.props.socket.emit('SEND_MESSAGE', this.state.message);
+    this.props.socket.emit(events.SEND_MESSAGE, this.state.message);
     this.setState({
       messages: [...this.state.messages, {message: this.state.message, author: 'Me'}],
       message: ''
@@ -54,14 +60,14 @@ class Chat extends Component {
       messageSound: soundManager.createSound({url: '/mp3/message.mp3'})
     });
 
-    this.props.socket.on('RECEIVE_MESSAGE', message => {
+    this.props.socket.on(events.RECEIVE_MESSAGE, message => {
       this.state.messageSound.play();
       this.addMessage(message);
       const messageContainer = document.querySelector('.messages');
       messageContainer.scrollTop = messageContainer.scrollHeight;
     });
 
-    this.props.socket.on('TYPE_MESSAGE', nickname => {
+    this.props.socket.on(events.TYPE_MESSAGE, nickname => {
       this.setState({typingNickname: nickname});
       setTimeout(() => this.setState({typingNickname: ''}), 1000);
     });

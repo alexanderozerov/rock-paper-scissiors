@@ -8,6 +8,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var gameConstants = {
+  WIN: 'WIN',
+  LOSS: 'LOSS',
+  TIE: 'TIE',
+  RESULT: 'GAME_RESULT'
+};
+
 var Game = function () {
   function Game(player1, player2) {
     _classCallCheck(this, Game);
@@ -64,29 +71,29 @@ var Game = function () {
       switch (roundResult) {
         case 1:
           this.score[0] += 1;
-          firstPlayerResult = 'WIN';
-          secondPlayerResult = 'LOSS';
+          firstPlayerResult = gameConstants.WIN;
+          secondPlayerResult = gameConstants.LOSS;
           break;
 
         case 0:
-          firstPlayerResult = secondPlayerResult = 'TIE';
+          firstPlayerResult = secondPlayerResult = gameConstants.TIE;
           break;
 
         case -1:
           this.score[1] += 1;
-          firstPlayerResult = 'LOSS';
-          secondPlayerResult = 'WIN';
+          firstPlayerResult = gameConstants.LOSS;
+          secondPlayerResult = gameConstants.WIN;
           break;
       }
 
-      this.player1.emit('GAME_RESULT', {
+      this.player1.emit(gameConstants.RESULT, {
         score: [this.score[1], this.score[0]],
         message: message,
         result: firstPlayerResult,
         opponentAction: this.choices.get(this.player2.id)
       });
 
-      this.player2.emit('GAME_RESULT', {
+      this.player2.emit(gameConstants.RESULT, {
         score: [this.score[0], this.score[1]],
         message: message,
         result: secondPlayerResult,

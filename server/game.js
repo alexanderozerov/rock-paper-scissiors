@@ -1,3 +1,10 @@
+const gameConstants = {
+  WIN: 'WIN',
+  LOSS: 'LOSS',
+  TIE: 'TIE',
+  RESULT: 'GAME_RESULT'
+};
+
 class Game {
   constructor(player1, player2) {
     this.player1 = player1;
@@ -57,29 +64,29 @@ class Game {
     switch(roundResult) {
     case 1:
       this.score[0] += 1;
-      firstPlayerResult = 'WIN';
-      secondPlayerResult = 'LOSS';
+      firstPlayerResult = gameConstants.WIN;
+      secondPlayerResult = gameConstants.LOSS;
       break;
 
     case 0:
-      firstPlayerResult = secondPlayerResult = 'TIE';
+      firstPlayerResult = secondPlayerResult = gameConstants.TIE;
       break;
 
     case -1:
       this.score[1] += 1;
-      firstPlayerResult = 'LOSS';
-      secondPlayerResult = 'WIN';
+      firstPlayerResult = gameConstants.LOSS;
+      secondPlayerResult = gameConstants.WIN;
       break;
     }
 
-    this.player1.emit('GAME_RESULT', {
+    this.player1.emit(gameConstants.RESULT, {
       score: [this.score[1], this.score[0]], 
       message, 
       result: firstPlayerResult,
       opponentAction: this.choices.get(this.player2.id)
     });
 
-    this.player2.emit('GAME_RESULT', {
+    this.player2.emit(gameConstants.RESULT, {
       score: [this.score[0], this.score[1]], 
       message, 
       result: secondPlayerResult,

@@ -7,6 +7,11 @@ import GameBoard from './gameBoard/GameBoard';
 import IconPanel from './iconPanel/IconPanel';
 import './Game.css';
 
+const events = {
+  GAME_RESULT: 'GAME_RESULT',
+  NEXT_MOVE: 'NEXT_MOVE'
+};
+
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +29,7 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    this.props.socket.on('GAME_RESULT', result => {
+    this.props.socket.on(events.GAME_RESULT, result => {
       this.showResult(result);
     });
 
@@ -35,7 +40,7 @@ class Game extends Component {
 
   makeMove(action) {
     this.setState({userAction: action});
-    this.props.socket.emit('NEXT_MOVE', action);
+    this.props.socket.emit(events.NEXT_MOVE, action);
   }
 
   showResult(result) {
